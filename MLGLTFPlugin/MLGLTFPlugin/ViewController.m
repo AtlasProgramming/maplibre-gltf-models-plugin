@@ -67,7 +67,6 @@
 -(void)addRasterLayer {
     
     NSString *maptilerKey = @"YOUR KEY HERE";
-    maptilerKey = @"oNAy4fG6SLp2KO06EUHh";
 
     NSString *streetsURL = [NSString stringWithFormat:@"https://api.maptiler.com/maps/streets-v2/tiles.json?key=%@", maptilerKey];
     NSString *satURL = [NSString stringWithFormat:@"https://api.maptiler.com/maps/satellite/tiles.json?key=%@", maptilerKey];
