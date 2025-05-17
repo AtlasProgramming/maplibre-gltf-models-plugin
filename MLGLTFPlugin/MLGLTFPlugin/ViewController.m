@@ -39,10 +39,20 @@
     self.styleURL = [[NSBundle mainBundle] URLForResource:@"PluginLayerTestStyle.json" withExtension:nil];
     self.mapView.styleURL = self.styleURL;
     
+    // Eiffel Tower
     [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(48.8584,
                                                                     2.2945)
                             zoomLevel:16
                              animated:NO];
+    
+    
+    // Arc De Triomphe
+    [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(48.8738,
+                                                                 2.2950)
+                            zoomLevel:16
+                             animated:NO];
+    
+    
     
     self.mapView.allowsTilting = YES;
     self.mapView.pitchEnabled = YES;
@@ -57,6 +67,7 @@
 -(void)addRasterLayer {
     
     NSString *maptilerKey = @"YOUR KEY HERE";
+    maptilerKey = @"oNAy4fG6SLp2KO06EUHh";
 
     NSString *streetsURL = [NSString stringWithFormat:@"https://api.maptiler.com/maps/streets-v2/tiles.json?key=%@", maptilerKey];
     NSString *satURL = [NSString stringWithFormat:@"https://api.maptiler.com/maps/satellite/tiles.json?key=%@", maptilerKey];

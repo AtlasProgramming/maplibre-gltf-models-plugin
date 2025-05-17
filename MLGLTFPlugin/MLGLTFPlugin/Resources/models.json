@@ -1,8 +1,17 @@
 {"models":
-    [{"name":"EiffelTower-SimpleModel.glb",
+    [   {"name":"EiffelTower-SimpleModel.glb",
         "lat":48.8584,
         "lon":2.2945,
         "rot":45.0,
         "scale_factor":117,
-        "brightness":1.0}]
+        "brightness":1.0},
+        
+        {"name":"arcdetriomphe.glb",
+        "lat":48.8738,
+        "lon":2.2950,
+        "rot":-65.0,
+        "scale_factor":1.5,
+        "brightness":1.0},
+        
+    ]
 }
