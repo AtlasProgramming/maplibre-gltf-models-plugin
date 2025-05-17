@@ -6,6 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		81D1632D2DD81887006BB06F /* MapLibreGLTFPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819794452DD75F6200EF1D8C /* MapLibreGLTFPlugin.framework */; };
+		81D1632E2DD81887006BB06F /* MapLibreGLTFPlugin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 819794452DD75F6200EF1D8C /* MapLibreGLTFPlugin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		81D163322DD81F6A006BB06F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D163312DD81F6A006BB06F /* CoreGraphics.framework */; };
+		81D163342DD81F7D006BB06F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D163332DD81F7D006BB06F /* CoreGraphics.framework */; };
+		81D163362DD81F85006BB06F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D163352DD81F85006BB06F /* CoreLocation.framework */; };
+		81D163382DD81F8D006BB06F /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D163372DD81F8D006BB06F /* Metal.framework */; };
+		81D1633A2DD81FB4006BB06F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D163392DD81FB4006BB06F /* Accelerate.framework */; };
+		81D1633C2DD82046006BB06F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D1633B2DD82046006BB06F /* ImageIO.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		81D1632F2DD81887006BB06F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8197941B2DD75F4300EF1D8C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 819794442DD75F6200EF1D8C;
+			remoteInfo = MapLibreGLTFPlugin;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		819794722DD7718100EF1D8C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -13,6 +34,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				81D1632E2DD81887006BB06F /* MapLibreGLTFPlugin.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -22,6 +44,12 @@
 /* Begin PBXFileReference section */
 		819794232DD75F4300EF1D8C /* MLGLTFPlugin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLGLTFPlugin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		819794452DD75F6200EF1D8C /* MapLibreGLTFPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MapLibreGLTFPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81D163312DD81F6A006BB06F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		81D163332DD81F7D006BB06F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		81D163352DD81F85006BB06F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		81D163372DD81F8D006BB06F /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
+		81D163392DD81FB4006BB06F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		81D1633B2DD82046006BB06F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -34,13 +62,16 @@
 		};
 		819794522DD75F6200EF1D8C /* Exceptions for "MapLibreGLTFPlugin" folder in "MapLibreGLTFPlugin" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Classes/gltf/GLTFModelLayer.mm,
+			);
 			publicHeaders = (
 				Classes/MLNGLTFPluginLayer.h,
 				MapLibreGLTFPlugin.h,
 			);
 			target = 819794442DD75F6200EF1D8C /* MapLibreGLTFPlugin */;
 		};
-		8197947C2DD79C1E00EF1D8C /* Exceptions for "MLGLTFPlugin" folder in "MapLibreGLTFPlugin" target */ = {
+		81D163462DD82931006BB06F /* Exceptions for "MLGLTFPlugin" folder in "MapLibreGLTFPlugin" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Frameworks/MapLibre.xcframework,
@@ -50,7 +81,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		8197947F2DD8155000EF1D8C /* Exceptions for "MLGLTFPlugin" folder in "Embed Frameworks" phase from "MLGLTFPlugin" target */ = {
+		81D1634D2DD82C62006BB06F /* Exceptions for "MLGLTFPlugin" folder in "Embed Frameworks" phase from "MLGLTFPlugin" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			attributesByRelativePath = {
 				Frameworks/MapLibre.xcframework = (CodeSignOnCopy, RemoveHeadersOnCopy, );
@@ -67,8 +98,8 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				8197943A2DD75F4400EF1D8C /* Exceptions for "MLGLTFPlugin" folder in "MLGLTFPlugin" target */,
-				8197947F2DD8155000EF1D8C /* Exceptions for "MLGLTFPlugin" folder in "Embed Frameworks" phase from "MLGLTFPlugin" target */,
-				8197947C2DD79C1E00EF1D8C /* Exceptions for "MLGLTFPlugin" folder in "MapLibreGLTFPlugin" target */,
+				81D1634D2DD82C62006BB06F /* Exceptions for "MLGLTFPlugin" folder in "Embed Frameworks" phase from "MLGLTFPlugin" target */,
+				81D163462DD82931006BB06F /* Exceptions for "MLGLTFPlugin" folder in "MapLibreGLTFPlugin" target */,
 			);
 			path = MLGLTFPlugin;
 			sourceTree = "<group>";
@@ -88,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81D163322DD81F6A006BB06F /* CoreGraphics.framework in Frameworks */,
+				81D1632D2DD81887006BB06F /* MapLibreGLTFPlugin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +128,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81D1633C2DD82046006BB06F /* ImageIO.framework in Frameworks */,
+				81D1633A2DD81FB4006BB06F /* Accelerate.framework in Frameworks */,
+				81D163382DD81F8D006BB06F /* Metal.framework in Frameworks */,
+				81D163362DD81F85006BB06F /* CoreLocation.framework in Frameworks */,
+				81D163342DD81F7D006BB06F /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +161,12 @@
 		819794582DD75FBA00EF1D8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81D1633B2DD82046006BB06F /* ImageIO.framework */,
+				81D163392DD81FB4006BB06F /* Accelerate.framework */,
+				81D163372DD81F8D006BB06F /* Metal.framework */,
+				81D163352DD81F85006BB06F /* CoreLocation.framework */,
+				81D163332DD81F7D006BB06F /* CoreGraphics.framework */,
+				81D163312DD81F6A006BB06F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -152,6 +196,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				81D163302DD81887006BB06F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				819794252DD75F4300EF1D8C /* MLGLTFPlugin */,
@@ -256,6 +301,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		81D163302DD81887006BB06F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 819794442DD75F6200EF1D8C /* MapLibreGLTFPlugin */;
+			targetProxy = 81D1632F2DD81887006BB06F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8197943C2DD75F4400EF1D8C /* Debug */ = {

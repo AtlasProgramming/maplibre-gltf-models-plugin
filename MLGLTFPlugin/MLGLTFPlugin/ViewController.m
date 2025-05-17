@@ -7,7 +7,7 @@
 
 #import "ViewController.h"
 #import <MapLibre/MapLibre.h>
-//#import <MapLibreGLTFPlugin/MapLibreGLTFPlugin.h>
+#import <MapLibreGLTFPlugin/MapLibreGLTFPlugin.h>
 
 @interface ViewController ()
 
@@ -22,7 +22,7 @@
 // extensible layers for the style can be added to the map view
 -(void)addPluginLayers {
 
-   // [self.mapView addPluginLayerType:[MLNGLTFPluginLayer class]];
+   [self.mapView addPluginLayerType:[MLNGLTFPluginLayer class]];
 
 }
 
@@ -36,9 +36,14 @@
     [self addPluginLayers];
     self.mapView.showsScale = YES;
 
-    self.styleURL = [[NSBundle mainBundle] URLForResource:@"PluginLayerTestStyleSimple.json" withExtension:nil];
+    self.styleURL = [[NSBundle mainBundle] URLForResource:@"PluginLayerTestStyle.json" withExtension:nil];
     self.mapView.styleURL = self.styleURL;
 
+    
+    [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(48.8584,
+                                                                    2.2945)
+                            zoomLevel:16
+                             animated:NO];
     
 }
 
