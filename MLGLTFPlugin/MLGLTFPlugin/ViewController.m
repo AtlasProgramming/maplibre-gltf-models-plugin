@@ -57,10 +57,11 @@
 -(void)addRasterLayer {
     
     NSString *maptilerKey = @"YOUR KEY HERE";
+
     NSString *streetsURL = [NSString stringWithFormat:@"https://api.maptiler.com/maps/streets-v2/tiles.json?key=%@", maptilerKey];
     NSString *satURL = [NSString stringWithFormat:@"https://api.maptiler.com/maps/satellite/tiles.json?key=%@", maptilerKey];
 
-    NSURL *rasterURL = [NSURL URLWithString:streetsURL];
+    NSURL *rasterURL = [NSURL URLWithString:satURL];
     
     MLNRasterTileSource *rasterTileSource = [[MLNRasterTileSource alloc] initWithIdentifier:@"my-raster-tile-source"
                                                                            configurationURL:rasterURL
