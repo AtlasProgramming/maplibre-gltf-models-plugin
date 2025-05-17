@@ -38,13 +38,15 @@
 
     self.styleURL = [[NSBundle mainBundle] URLForResource:@"PluginLayerTestStyle.json" withExtension:nil];
     self.mapView.styleURL = self.styleURL;
-
     
     [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(48.8584,
                                                                     2.2945)
                             zoomLevel:16
                              animated:NO];
     
+    self.mapView.allowsTilting = YES;
+    self.mapView.pitchEnabled = YES;
+    self.mapView.minimumPitch = 50;
 }
 
 
