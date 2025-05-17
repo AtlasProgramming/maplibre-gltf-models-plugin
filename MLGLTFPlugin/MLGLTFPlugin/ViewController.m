@@ -47,7 +47,39 @@
     self.mapView.allowsTilting = YES;
     self.mapView.pitchEnabled = YES;
     self.mapView.minimumPitch = 50;
+
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self addRasterLayer];
+    });
 }
+
+-(void)addRasterLayer {
+    
+    NSString *maptilerKey = @"YOUR KEY HERE";
+    NSString *streetsURL = [NSString stringWithFormat:@"https://api.maptiler.com/maps/streets-v2/tiles.json?key=%@", maptilerKey];
+    NSString *satURL = [NSString stringWithFormat:@"https://api.maptiler.com/maps/satellite/tiles.json?key=%@", maptilerKey];
+
+    NSURL *rasterURL = [NSURL URLWithString:streetsURL];
+    
+    MLNRasterTileSource *rasterTileSource = [[MLNRasterTileSource alloc] initWithIdentifier:@"my-raster-tile-source"
+                                                                           configurationURL:rasterURL
+                                                                                   tileSize:512];
+    [self.mapView.style addSource:rasterTileSource];
+
+    MLNRasterStyleLayer *rasterLayer = [[MLNRasterStyleLayer alloc] initWithIdentifier:@"my-raster-layer" source:rasterTileSource];
+    rasterLayer.minimumZoomLevel = 0;
+    rasterLayer.maximumZoomLevel = 24;
+    rasterLayer.visible = YES;
+
+    MLNStyleLayer *modelLayer = [self.mapView.style layerWithIdentifier:@"model-layer"];
+    if (modelLayer) {
+        [self.mapView.style insertLayer:rasterLayer belowLayer:modelLayer];
+    }
+
+}
+
+
 
 
 @end
