@@ -1,5 +1,7 @@
 {"models":
     [   {"name":"EiffelTower-SimpleModel.glb",
+         "sourceURL":"https://free3d.com/3d-model/tour-eiffel-237685.html",
+         "license":"Personal Use",
         "lat":48.8584,
         "lon":2.2945,
         "rot":45.0,
@@ -7,6 +9,8 @@
         "brightness":1.0},
         
         {"name":"arcdetriomphe.glb",
+         "sourceURL":"https://www.turbosquid.com/3d-models/arc-de-triomphe-1912286",
+         "license":"Editorial Uses Only",
         "lat":48.8738,
         "lon":2.2950,
         "rot":-65.0,

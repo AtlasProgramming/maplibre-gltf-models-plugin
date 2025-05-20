@@ -156,7 +156,7 @@ simd_double4x4 toSimdMatrix4D(const MLNMatrix4 & mlMatrix) {
 
         // TBD
     ];
-
+    
     return tempResult;
 
 }

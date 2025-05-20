@@ -530,13 +530,10 @@
         {   "id": "model-layer",
             "type": "hudhud::gltf-model-layer",
             "properties": {
-                "color1":"#FFAADD",
-                "offset-x": -300,
-                "offset-y": -300,
                 "model-source-resource":"models.json"
             },
             "paint": {
-                "scale": 2.5
+                "scale": 1.0
             }
         },
         {
