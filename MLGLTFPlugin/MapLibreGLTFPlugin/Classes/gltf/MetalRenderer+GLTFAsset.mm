@@ -55,7 +55,7 @@ std::shared_ptr<GLTFRenderModel> MetalRenderer::createRenderModel(GLTFAsset *ass
     tempResult->_gltfModel = model;
     tempResult->_scaling = model->_scaleFactor;
     tempResult->_brightness = model->_brightness;
-
+    
     computeRegularizationMatrix(tempResult);
     computeTransforms(tempResult);
     addDefaultLights(tempResult);
@@ -123,6 +123,16 @@ void MetalRenderer::computeTransforms(std::shared_ptr<GLTFRenderModel> model) {
     model->_modelViewMatrix = modelTranslated;
 
     return;
+}
+
+void MetalRenderer::recalcStats() {
+    
+    for (auto m: _models) {
+        m->_gltfModel->_totalTextureBytes = [m->_asset totalTextureBytes];
+        m->_gltfModel->_totalVertexBytes = [m->_asset totalBufferBytes];
+        m->_gltfModel->_totalTextures = [m->_asset totalTextureCount];
+    }
+
 }
 
 void MetalRenderer::renderScene(std::shared_ptr<GLTFRenderModel> model,
@@ -537,6 +547,19 @@ id<MTLTexture> MetalRenderer::textureForImage(GLTFImage *image,
     } else {
         _texturesForImageIdentifiers[image.identifier] = texture;
     }
+    
+    // The new texture methods above always load as RGBA
+    NSUInteger colorComponents = 4;
+    NSUInteger tempTextureSize = texture.height * texture.width * texture.depth * colorComponents;
+    
+    
+    if ([[options objectForKey:@"GLTFMTLTextureLoaderOptionGenerateMipmaps"] boolValue]) {
+        tempTextureSize = tempTextureSize * 1.33;
+    }
+    
+    //NSLog(@"Setting Base Color Texture Size: %lu", tempTextureSize);
+
+    image.textureSize = tempTextureSize;
     
     return texture;
 }

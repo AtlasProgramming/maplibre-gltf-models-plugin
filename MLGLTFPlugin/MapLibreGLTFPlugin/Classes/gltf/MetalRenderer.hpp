@@ -84,6 +84,9 @@ public:
     // Set the rendering environemnt variables
     void setRenderingEnvironemnt(std::shared_ptr<GLTFManagerRenderingEnvironment> renderingEnvironment) override;
 
+    // Recalc the stats of the renderer
+    void recalcStats() override;
+
 private:
     // Rendering environment variables
     simd_double4x4 _projectionMatrix;

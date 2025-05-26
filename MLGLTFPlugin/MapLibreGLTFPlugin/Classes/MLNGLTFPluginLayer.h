@@ -10,6 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface MLNGLTFPluginLayerStats: NSObject
+
+@property NSUInteger totalMemory;
+@property NSUInteger textureMemory;
+@property NSUInteger textureCount;
+@property NSUInteger vertexMemory;
+
+
+@end
+
 @interface MLNGLTFPluginLayer : MLNPluginLayer
 
 // This sets the relative light position for all the models being rendered
@@ -25,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
       scaleFactor:(float)scaleFactor
        brightness:(float)brightness;
 
+- (MLNGLTFPluginLayerStats *)getLayerStats;
 
 
 @end

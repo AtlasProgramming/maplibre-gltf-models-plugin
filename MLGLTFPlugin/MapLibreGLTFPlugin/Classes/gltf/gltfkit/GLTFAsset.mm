@@ -112,6 +112,104 @@
     [_cameras addObject:camera];
 }
 
+// Returns total buffer bytes
+- (NSUInteger)totalBufferBytes {
+    
+    NSUInteger tempResult = 0;
+    
+    for (id<GLTFBuffer> buffer in self.buffers) {
+        tempResult = tempResult + buffer.length;
+    }
+    
+    
+    return tempResult;
+    
+}
+
+-(NSUInteger)totalTextureBytesPerNode:(GLTFNode *)node {
+    
+    NSUInteger tempResult = 0;
+    
+    GLTFMesh *mesh = node.mesh;
+    if (mesh) {
+        for (GLTFSubmesh *submesh in mesh.submeshes) {
+            GLTFMaterial *material = submesh.material;
+            
+            if (material.baseColorTexture.texture.image) {
+                //NSLog(@"Adding Base Color Texture Size: %lu", material.baseColorTexture.texture.image.textureSize);
+                tempResult = tempResult + material.baseColorTexture.texture.image.textureSize;
+            }
+            
+        }
+        
+        for (GLTFNode *child in node.children) {
+            tempResult = tempResult + [self totalTextureBytesPerNode:child];
+        }
+        
+    }
+
+    return tempResult;
+    
+}
+
+- (NSUInteger)totalTextureBytes {
+    NSUInteger tempResult = 0;
+    
+    for (GLTFNode *node in _defaultScene.nodes) {
+        tempResult = tempResult + [self totalTextureBytesPerNode:node];
+    }
+
+    
+//    for (GLTFImage *image in self.images) {
+//        tempResult = tempResult + image.textureSize;
+//    }
+
+    return tempResult;
+}
+
+
+-(NSUInteger)totalTextureCountPerNode:(GLTFNode *)node {
+    
+    NSUInteger tempResult = 0;
+    
+    GLTFMesh *mesh = node.mesh;
+    if (mesh) {
+        for (GLTFSubmesh *submesh in mesh.submeshes) {
+            GLTFMaterial *material = submesh.material;
+            
+            if (material.baseColorTexture.texture.image) {
+                //NSLog(@"Adding Base Color Texture Size: %lu", material.baseColorTexture.texture.image.textureSize);
+                tempResult = tempResult + 1;
+            }
+            
+        }
+        
+        for (GLTFNode *child in node.children) {
+            tempResult = tempResult + [self totalTextureCountPerNode:child];
+        }
+        
+    }
+
+    return tempResult;
+    
+}
+
+
+
+
+-(NSUInteger)totalTextureCount {
+
+    NSUInteger tempResult = 0;
+    
+    for (GLTFNode *node in _defaultScene.nodes) {
+        tempResult = tempResult + [self totalTextureCountPerNode:node];
+    }
+
+    return tempResult;
+    
+}
+
+
 - (NSData *)imageDataForDataURI:(NSString *)uriData {
     NSString *prefix = @"data:";
     if ([uriData hasPrefix:prefix]) {

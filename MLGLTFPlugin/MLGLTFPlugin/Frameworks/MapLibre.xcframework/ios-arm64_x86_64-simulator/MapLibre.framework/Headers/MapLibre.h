@@ -37,8 +37,8 @@
 #import <MapLibre/MLNOfflineRegion.h>
 #import <MapLibre/MLNOfflineStorage.h>
 #import <MapLibre/MLNOverlay.h>
-#import <MapLibre/MLNPLuginStyleLayer.h>
 #import <MapLibre/MLNPluginLayer.h>
+#import <MapLibre/MLNPluginStyleLayer.h>
 #import <MapLibre/MLNPointAnnotation.h>
 #import <MapLibre/MLNPointCollection.h>
 #import <MapLibre/MLNPolygon.h>

@@ -35,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// A data object containing the data encoded in the image's data-uri, if present; otherwise nil
 @property (nonatomic, strong) NSData *imageData;
 
+// The size of the resulting texture
+@property NSUInteger textureSize;
+
 @end
 
 NS_ASSUME_NONNULL_END

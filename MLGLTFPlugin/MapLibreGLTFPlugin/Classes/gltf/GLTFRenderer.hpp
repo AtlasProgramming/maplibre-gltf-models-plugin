@@ -52,6 +52,9 @@ public:
     // Set the rendering environemnt variables
     virtual void setRenderingEnvironemnt(std::shared_ptr<GLTFManagerRenderingEnvironment> renderingEnvironment);
 
+    // Recalc the stats of the renderer
+    virtual void recalcStats();
+
 protected:
     std::unique_ptr<Camera> _camera = nullptr;
     double _metersPerPixel = 1;

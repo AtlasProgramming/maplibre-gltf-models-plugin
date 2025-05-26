@@ -38,6 +38,16 @@ public:
     double _xLateX = 0;
     double _xLateY = 0;
     double _xLateZ = 0;
+    
+    // Total Vertex Bytes
+    size_t _totalVertexBytes = 0;
+    
+    // Total bytes this model's textures are using
+    size_t _totalTextureBytes = 0;
+    
+    // Total number of textures
+    size_t _totalTextures = 0;
+    
 };
 
 } // namespace gltf

@@ -27,6 +27,13 @@ using namespace maplibre::gltf;
 @property float modelScale;
 @property float brightness;
 
+// Model Stats
+@property NSUInteger textureMemory;
+@property NSUInteger vertexMemory;
+@property NSUInteger textureCount;
+
+@property std::shared_ptr<GLTFModel> _cppModel;
+
 @end
 
 
@@ -130,6 +137,11 @@ simd_double4x4 toSimdMatrix4D(const MLNMatrix4 & mlMatrix) {
     return tempResult;
 }
 
+@implementation MLNGLTFPluginLayerStats
+
+
+@end
+
 @implementation MLNGLTFPluginLayer {
     // The render pipeline state
     id<MTLRenderPipelineState> _pipelineState;
@@ -152,13 +164,42 @@ simd_double4x4 toSimdMatrix4D(const MLNMatrix4 & mlMatrix) {
         // TBD
         // The scale property
         [MLNPluginLayerProperty propertyWithName:@"scale"
-                                    propertyType:MLNPluginLayerPropertyTypeSingleFloat]
+                                    propertyType:MLNPluginLayerPropertyTypeSingleFloat
+                                    defaultValue:@(1.0)]
 
         // TBD
     ];
     
     return tempResult;
 
+}
+
+- (MLNGLTFPluginLayerStats *)getLayerStats {
+    
+    
+    if (_manager == nullptr) {
+        return nil;
+    }
+    
+    _manager->updateStats();
+    
+    MLNGLTFPluginLayerStats *tempResult = [[MLNGLTFPluginLayerStats alloc] init];
+    
+    for (GLTFModelMetadata *m in self.models) {
+        if (m._cppModel == nullptr) {
+            continue;
+        }
+        m.vertexMemory = m._cppModel->_totalVertexBytes;
+        m.textureMemory = m._cppModel->_totalTextureBytes;
+        m.textureCount = m._cppModel->_totalTextures;
+        tempResult.totalMemory = tempResult.totalMemory + m.textureMemory + m.vertexMemory;
+        tempResult.textureMemory = tempResult.textureMemory + m.textureMemory;
+        tempResult.vertexMemory = tempResult.vertexMemory + m.vertexMemory;
+        tempResult.textureCount = m._cppModel->_totalTextures;
+    }
+
+    return tempResult;
+    
 }
 
 
@@ -269,6 +310,11 @@ simd_double4x4 toSimdMatrix4D(const MLNMatrix4 & mlMatrix) {
 
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:modelMetadata.modelPath withExtension:nil];
 
+    if (!fileURL) {
+        // TODO: What should we do here?
+        return;
+    }
+    
     std::string modelURL = [[fileURL absoluteString] UTF8String];
 
     std::shared_ptr<GLTFModel> model = std::make_shared<GLTFModel>();
@@ -283,6 +329,7 @@ simd_double4x4 toSimdMatrix4D(const MLNMatrix4 & mlMatrix) {
     _manager->addModel(model);
 
     modelMetadata.modelLoaded = YES;
+    modelMetadata._cppModel = model;
 
 }
 
@@ -316,8 +363,8 @@ simd_double4x4 toSimdMatrix4D(const MLNMatrix4 & mlMatrix) {
         _manager->setProjectionCallback(^Cartesian3D(const Coordinate2D & coordinate){
             Cartesian3D tempResult;
 
-            tempResult._x = 5198170.102753558;
-            tempResult._y = 2832006.4886368043;
+//            tempResult._x = 5198170.102753558;
+//            tempResult._y = 2832006.4886368043;
             tempResult._z = 0;
 
             tempResult._x = coordinate._lon * DEG_RAD;

@@ -65,6 +65,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addCamera:(GLTFCamera *)camera;
 
+// Returns total buffer bytes
+- (NSUInteger)totalBufferBytes;
+
+// Returns the total bytes associated with textures
+- (NSUInteger)totalTextureBytes;
+
+// Total number of textures
+- (NSUInteger)totalTextureCount;
+
 @end
 
 NS_ASSUME_NONNULL_END

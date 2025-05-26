@@ -66,6 +66,7 @@
 				Classes/gltf/GLTFModelLayer.mm,
 			);
 			publicHeaders = (
+				Classes/GLTFStatsView.h,
 				Classes/MLNGLTFPluginLayer.h,
 				MapLibreGLTFPlugin.h,
 			);

@@ -146,6 +146,14 @@ void GLTFManager::render() {
     _renderer->render();
 }
 
+// Render
+void GLTFManager::updateStats() {
+    if (_renderer == nullptr) {
+        return;
+    }
+    _renderer->recalcStats();
+}
+
 
 
 void GLTFManager::createRenderingEnvironment() {

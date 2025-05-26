@@ -69,3 +69,8 @@ void GLTFRenderer::setUseBloomPass(bool useBloomPass) {
 void GLTFRenderer::setRenderingEnvironemnt(std::shared_ptr<GLTFManagerRenderingEnvironment> renderingEnvironment) {
     _renderingEnvironment = renderingEnvironment;
 }
+
+// Recalc the stats of the renderer
+void GLTFRenderer::recalcStats() {
+    // Base class does nothing
+}

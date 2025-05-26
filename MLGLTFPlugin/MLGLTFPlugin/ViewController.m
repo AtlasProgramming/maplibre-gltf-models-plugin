@@ -13,6 +13,7 @@
 
 @property MLNMapView *mapView;
 @property NSURL *styleURL;
+@property GLTFStatsView *statsView;
 
 @end
 
@@ -87,8 +88,26 @@
     if (modelLayer) {
         [self.mapView.style insertLayer:rasterLayer belowLayer:modelLayer];
     }
+    
+    [self addStats];
 
 }
+
+-(void)addStats {
+
+    MLNStyleLayer *modelLayer = [self.mapView.style layerWithIdentifier:@"model-layer"];
+    MLNPluginStyleLayer *psl = (MLNPluginStyleLayer *)modelLayer;
+    MLNGLTFPluginLayer *pl = (MLNGLTFPluginLayer *)[psl pluginLayer];
+
+    if (!self.statsView) {
+        self.statsView = [[GLTFStatsView alloc] initWithPluginLayer:pl];
+        [self.view addSubview:self.statsView];
+    }
+    
+    
+}
+
+
 
 
 

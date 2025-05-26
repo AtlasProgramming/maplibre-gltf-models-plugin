@@ -41,6 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 // GLTFTextureTargetTexture2D
 @property (nonatomic, assign) GLTFTextureTarget target;
 
+// How much memory the texture takes up in memory
+@property (nonatomic, assign) NSUInteger memorySize;
+
 @end
 
 @interface GLTFTextureInfo : NSObject

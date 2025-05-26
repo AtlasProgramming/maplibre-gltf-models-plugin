@@ -78,6 +78,9 @@ public:
     // Render
     void render();
 
+    // Render
+    void updateStats();
+
 private:
     RenderingEnvironment _renderingEnvironment = RenderingEnvironmentUnknown;
 
