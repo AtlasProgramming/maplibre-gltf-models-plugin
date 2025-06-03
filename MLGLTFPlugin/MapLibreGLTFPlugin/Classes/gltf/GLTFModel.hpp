@@ -48,6 +48,22 @@ public:
     // Total number of textures
     size_t _totalTextures = 0;
     
+    // Animations
+    void animateToLocation(double toLatitude,
+                           double toLongitude,
+                           double durationSeconds);
+    bool _animatingLocation = false;
+    double _locationAnimationDuration = 0;
+    double _locationAnimationRemaining = 0;
+    double _locationAnimationStartLatitude = 0;
+    double _locationAnimationStartLongitude = 0;
+    double _locationAnimationToLatitude = 0;
+    double _locationAnimationToLongitude = 0;
+
+    // Update all animations
+    void updateAnimations(double secondsSinceLastRender);
+
+    
 };
 
 } // namespace gltf

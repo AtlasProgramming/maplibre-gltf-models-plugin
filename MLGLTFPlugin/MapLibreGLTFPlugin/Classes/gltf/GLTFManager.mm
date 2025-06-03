@@ -113,6 +113,11 @@ void GLTFManager::updateScene(float timeSinceLastDraw) {
         return;
     }
     
+    // Go through all the models and update any animations
+    for (auto m: _models) {
+        m->updateAnimations(timeSinceLastDraw);
+    }
+    
     // Go through all the models and project them.  This is a
     // hack right now to try and sync the models with the scene
     if (_projectionCallback != nullptr) {

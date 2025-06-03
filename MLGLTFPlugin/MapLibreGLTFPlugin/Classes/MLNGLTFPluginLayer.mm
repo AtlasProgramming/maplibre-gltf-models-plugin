@@ -19,13 +19,9 @@ using namespace maplibre::gltf;
 
 // This is here to hold the metadata about the model if load is called before
 // the layer is created
-@interface GLTFModelMetadata : NSObject
-@property NSString *modelPath;
-@property CLLocationCoordinate2D modelCoordinate;
-@property double modelRotation;
-@property BOOL modelLoaded;
-@property float modelScale;
-@property float brightness;
+@interface GLTFModelMetadata () {
+    
+}
 
 // Model Stats
 @property NSUInteger textureMemory;
@@ -49,6 +45,20 @@ using namespace maplibre::gltf;
     }
     return self;
 }
+
+-(void)animateToLocation:(CLLocationCoordinate2D)newLocation
+                duration:(NSTimeInterval)duration {
+    if (self._cppModel == nullptr) {
+        return;
+    }
+    
+    self._cppModel->animateToLocation(newLocation.latitude, newLocation.longitude, duration);
+    /*
+    self._cppModel->_referenceLat = newLocation.latitude;
+    self._cppModel->_referenceLon = newLocation.longitude;
+    */
+}
+
 @end
 
 @interface MLNGLTFPluginLayer () {
@@ -274,7 +284,7 @@ simd_double4x4 toSimdMatrix4D(const MLNMatrix4 & mlMatrix) {
 }
 
 
--(void)loadModel:(NSString *)appResourceFilename
+-(GLTFModelMetadata *)loadModel:(NSString *)appResourceFilename
              lat:(double)lat
              lon:(double)lon
         rotationDeg:(double)rotationDeg
@@ -298,6 +308,8 @@ simd_double4x4 toSimdMatrix4D(const MLNMatrix4 & mlMatrix) {
         [self addModel:modelMetadata];
     }
 
+    return modelMetadata;
+    
 }
 
 
@@ -377,6 +389,7 @@ simd_double4x4 toSimdMatrix4D(const MLNMatrix4 & mlMatrix) {
             return tempResult;
         });
 
+        self.managerCreated = YES;
         loadModels = true;
     }
 

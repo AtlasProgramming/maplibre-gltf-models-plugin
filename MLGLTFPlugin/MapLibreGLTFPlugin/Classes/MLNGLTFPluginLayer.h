@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapLibre/MapLibre.h>
+#import <CoreLocation/CoreLocation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,6 +21,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface GLTFModelMetadata: NSObject {
+    
+}
+
+@property NSString *modelPath;
+@property CLLocationCoordinate2D modelCoordinate;
+@property double modelRotation;
+@property BOOL modelLoaded;
+@property float modelScale;
+@property float brightness;
+
+-(void)animateToLocation:(CLLocationCoordinate2D)newLocation
+                duration:(NSTimeInterval)duration;
+
+
+@end
+
 @interface MLNGLTFPluginLayer : MLNPluginLayer
 
 // This sets the relative light position for all the models being rendered
@@ -28,12 +46,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)loadModelFromJSON:(NSString *)modelMetadataFilename;
 
-- (void)loadModel:(NSString *)appResourceFilename
-              lat:(double)lat
-              lon:(double)lon
-      rotationDeg:(double)rotationDeg
-      scaleFactor:(float)scaleFactor
-       brightness:(float)brightness;
+- (GLTFModelMetadata *)loadModel:(NSString *)appResourceFilename
+                  lat:(double)lat
+                  lon:(double)lon
+          rotationDeg:(double)rotationDeg
+          scaleFactor:(float)scaleFactor
+           brightness:(float)brightness;
 
 - (MLNGLTFPluginLayerStats *)getLayerStats;
 

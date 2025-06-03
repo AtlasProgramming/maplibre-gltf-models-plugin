@@ -14,7 +14,7 @@
 @property MLNMapView *mapView;
 @property NSURL *styleURL;
 @property GLTFStatsView *statsView;
-
+@property GLTFModelMetadata *animatedModel;
 @end
 
 @implementation ViewController
@@ -90,6 +90,8 @@
     }
     
     [self addStats];
+    
+   [self addAnimatedModel];
 
 }
 
@@ -103,6 +105,30 @@
         self.statsView = [[GLTFStatsView alloc] initWithPluginLayer:pl];
         [self.view addSubview:self.statsView];
     }
+    
+    
+}
+
+-(void)addAnimatedModel {
+    
+    MLNStyleLayer *modelLayer = [self.mapView.style layerWithIdentifier:@"model-layer"];
+    MLNPluginStyleLayer *psl = (MLNPluginStyleLayer *)modelLayer;
+    MLNGLTFPluginLayer *pl = (MLNGLTFPluginLayer *)[psl pluginLayer];
+    
+    // License for Cab: https://www.turbosquid.com/3d-models/3d-simple-futuristic-cab-2090-toy-car-model-1931586
+    NSString *modelName = @"Cab2.glb";
+    self.animatedModel = [pl loadModel:modelName
+                                   lat:48.8738
+                                   lon:2.2950
+                           rotationDeg:0
+                           scaleFactor:4.0
+                            brightness:1.0];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.animatedModel animateToLocation:CLLocationCoordinate2DMake(48.8584,
+                                                                         2.2945)
+                                     duration:5.0];
+    });
     
     
 }
